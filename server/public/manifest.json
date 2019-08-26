@@ -1,6 +1,6 @@
 {
-  "name": "crm",
-  "short_name": "crm",
+  "name": "app",
+  "short_name": "app",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",

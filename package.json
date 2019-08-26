@@ -1,15 +1,20 @@
 {
-  "name": "crm",
+  "name": "app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "tsc && mkdir -p dist/server/public && cp -R server/public/. dist/server/public/. && npm run start",
+    "build": "cross-env NODE_ENV=production tsc && cross-env NODE_ENV=production vue-cli-service build && mkdir -p dist/server/public && cp -R server/public/. dist/server/public/.",
+    "start": "node ./dist/server/src/main.js",
+    "dev": "rm -rf dist && cross-env NODE_ENV=development nodemon --exec \"npm rum serve\"",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "compression": "^1.7.4",
     "core-js": "^2.6.5",
+    "helmet": "^3.20.0",
+    "morgan": "^1.9.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
@@ -18,7 +23,14 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@types/compression": "^1.0.1",
+    "@types/express": "^4.17.1",
+    "@types/helmet": "0.0.44",
     "@types/jest": "^23.1.4",
+    "@types/morgan": "^1.7.37",
+    "@types/webpack": "^4.39.0",
+    "@types/webpack-dev-middleware": "^2.0.3",
+    "@types/webpack-hot-middleware": "^2.16.5",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-pwa": "^3.11.0",
@@ -30,6 +42,7 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
@@ -39,7 +52,8 @@
     "sass-loader": "^7.1.0",
     "ts-jest": "^23.0.0",
     "typescript": "^3.4.3",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -49,5 +63,9 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "nodemonConfig": {
+    "ext": "js ts",
+    "watch": "server"
   }
 }

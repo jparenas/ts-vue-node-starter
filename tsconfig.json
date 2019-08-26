@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es5",
+    "module": "commonjs",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
@@ -11,13 +11,15 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
     "types": [
       "webpack-env",
       "jest"
     ],
     "paths": {
       "@/*": [
-        "src/*"
+        "client/src/*"
       ]
     },
     "lib": [
@@ -28,11 +30,11 @@
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "*/src/**/*.ts",
+    "*/src/**/*.tsx",
+    "*/src/**/*.vue",
+    "*/tests/**/*.ts",
+    "*/tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
